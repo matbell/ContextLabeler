@@ -1,0 +1,127 @@
+<resources>
+
+    <!-- SETUP -->
+    <string name="permission_title">PERMISSIONS</string>
+    <string name="permission_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel efficitur turpis.
+        Praesent vulputate, erat sed facilisis vulputate, diam arcu bibendum mauris, eget porta
+        sapien arcu ac dolor.
+    </string>
+    <string name="grant_permissions">Grant permissions</string>
+    <string name="ignore_battery_opt">Ignore battery optimization</string>
+    <string name="open_settings">Open settings</string>
+    <string name="finish">Finish</string>
+
+    <string name="app_name">Context Labeler</string>
+    <string name="activity_hint">What are you doing?</string>
+    <string name="button_start">START NEW READING</string>
+    <string name="button_stop">STOP READING</string>
+    <string name="action_text">Reading Activity:</string>
+    <string name="history">History</string>
+    <string name="ask_conf">
+        {
+            "probes" : [
+                {
+                    "name" : "WeatherProbe",
+                    "interval" : 3600,
+                    "unit" : 2,
+                    "appId" : "84da1f0489af48796227b87443170b50",
+                    "logFile" : "weather.csv"
+                },
+                {
+                    "name" : "ActivityRecognitionProbe",
+                    "updateInterval" : 60,
+                    "logFile" : "activity.csv"
+                },
+                {
+                    "name" : "AudioProbe",
+                    "interval" : 60,
+                    "logFile" : "audio.csv"
+                },
+                {
+                    "name" : "BatteryProbe",
+                    "interval" : 60,
+                    "logFile" : "battery.csv"
+                },
+                {
+                    "name" : "BluetoothConnProbe",
+                    "logFile" : "bt_conn.csv"
+                },
+                {
+                    "name" : "BluetoothScanProbe",
+                    "interval" : 60,
+                    "logFile" : "bt_scan.csv"
+                },
+                {
+                    "name" : "CallsProbe",
+                    "logFile" : "calls.csv"
+                },
+                {
+                    "name" : "CellInfoProbe",
+                    "interval" : 60,
+                    "logFile" : "cells.csv"
+                },
+                {
+                    "name" : "CurrentCalendarEventsProbe",
+                    "interval" : 60,
+                    "logFile" : "calendar_current_events.csv"
+                },
+                {
+                    "name" : "DisplayProbe",
+                    "interval" : 60,
+                    "logFile" : "display.csv"
+                },
+                {
+                    "name" : "EnvironmentSensorProbe",
+                    "interval" : 60,
+                    "logFile" : "environment_sensors.csv"
+                },
+                {
+                    "name" : "MotionSensorsProbe",
+                    "interval" : 60,
+                    "logFile" : "motion_sensors.csv"
+                },
+                {
+                    "name" : "PositionSensorProbe",
+                    "interval" : 60,
+                    "logFile" : "position_sensors.csv"
+                },
+                {
+                    "name" : "InstalledAppsProbe",
+                    "interval" : 60,
+                    "logFile" : "installed_apps.csv"
+                },
+                {
+                    "name" : "LocationProbe",
+                    "interval" : 180,
+                    "logFile" : "location.csv"
+                },
+                {
+                    "name" : "RunningApplicationsProbe",
+                    "interval" : 180,
+                    "logFile" : "running_apps.csv"
+                },
+                {
+                    "name" : "AppsUsageProbe",
+                    "interval" : 180,
+                    "logFile" : "apps_usage.csv"
+                },
+                {
+                    "name" : "WiFiProbe",
+                    "interval" : 180,
+                    "logFile" : "wifi_scans.csv"
+                },
+                {
+                    "name" : "WiFiP2PProbe",
+                    "interval" : 120,
+                    "startDelay" : 120,
+                    "logFile" : "wifi_p2p_scans.csv"
+                },
+                {
+                    "name" : "SmsProbe",
+                    "logFile" : "sms.csv"
+                }
+            ]
+        }
+    </string>
+</resources>
