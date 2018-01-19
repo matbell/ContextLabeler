@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler;
+package matbell.it.contextlabeler.adapters;
 
 import android.support.annotation.NonNull;
 
@@ -6,14 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import matbell.it.contextlabeler.LogManager;
+
 public class HistoryElement implements Comparable<HistoryElement>{
 
-    String activityName;
-    String start;
-    String duration;
+    public String activityName;
+    public String start;
+    public String duration;
     long startActivity, endActivity;
 
-    HistoryElement(String activityName, long start, long end){
+    public HistoryElement(String activityName, long start, long end){
 
         this.activityName = activityName;
         this.startActivity = start;

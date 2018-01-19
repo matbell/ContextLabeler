@@ -16,6 +16,7 @@ import com.dd.morphingbutton.MorphingButton;
 import matbell.it.contextlabeler.MainActivity;
 import matbell.it.contextlabeler.PreferencesController;
 import matbell.it.contextlabeler.R;
+import matbell.it.contextlabeler.setup.fragments.SetupAppStatisticsFragment;
 import matbell.it.contextlabeler.setup.fragments.SetupAutoStartFragment;
 import matbell.it.contextlabeler.setup.fragments.SetupPermissionsFragment;
 import matbell.it.contextlabeler.setup.fragments.SetupPowerFragment;
@@ -25,7 +26,7 @@ public class SetupActivity extends AppCompatActivity {
     public static final int REQ_IGNORE_BATTERY_OPT = 1;
     public static final String SETUP_PREF_KEY = "setupComplete";
 
-    private Fragment[] fragments = new Fragment[3];
+    private Fragment[] fragments = new Fragment[4];
 
     private CustomViewPager mPager;
 
@@ -38,6 +39,7 @@ public class SetupActivity extends AppCompatActivity {
         fragments[0] = new SetupPermissionsFragment();
         fragments[1] = new SetupPowerFragment();
         fragments[2] = new SetupAutoStartFragment();
+        fragments[3] = new SetupAppStatisticsFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = findViewById(R.id.pager);
@@ -65,8 +67,8 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
-    public void nextPage(){
-        mPager.setCurrentItem(mPager.getCurrentItem() + 1);
+    public void nextFragment(int step){
+        mPager.setCurrentItem(mPager.getCurrentItem() + step);
     }
 
     //==============================================================================================
@@ -119,7 +121,7 @@ public class SetupActivity extends AppCompatActivity {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                nextPage();
+                                nextFragment(1);
                             }
                         }, fragment.getAnimationDuration() * 2);
                     }
@@ -155,9 +157,9 @@ public class SetupActivity extends AppCompatActivity {
                         public void run() {
 
                             if(!AutoStartController.requestIsNeeded())
-                                onSetupComplete();
+                                nextFragment(2);
                             else
-                                nextPage();
+                                nextFragment(1);
 
                         }
                     }, fragment.getAnimationDuration() * 2);
@@ -175,6 +177,9 @@ public class SetupActivity extends AppCompatActivity {
         }
     }
 
+    //==============================================================================================
+    // Setup complete
+    //==============================================================================================
     public void onSetupComplete(){
 
         PreferencesController.storeSetupComplete(this);

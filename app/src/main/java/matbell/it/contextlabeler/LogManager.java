@@ -1,7 +1,6 @@
 package matbell.it.contextlabeler;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.snatik.storage.Storage;
 
@@ -13,11 +12,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
-class LogManager {
+import matbell.it.contextlabeler.adapters.HistoryElement;
+
+public class LogManager {
 
     static final String BASE_DIR = "ContextLabeler";
     static final String FILE_NAME = "activities.log";
-    static final String LOG_SEP = "\t";
+    public static final String LOG_SEP = "\t";
 
     static void storeNewActivity(final Context context, final String activityName,
                                  final long start){
@@ -47,7 +48,7 @@ class LogManager {
 
     }
 
-    static void removeActivity(final Context context, final HistoryElement element){
+    public static void removeActivity(final Context context, final HistoryElement element){
 
         new Thread(new Runnable() {
             @Override

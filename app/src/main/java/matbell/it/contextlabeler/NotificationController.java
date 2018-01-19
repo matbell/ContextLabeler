@@ -19,10 +19,10 @@ class NotificationController {
         NotificationCompat.Builder b = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL);
 
         b.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
+                .setDefaults(Notification.DEFAULT_LIGHTS)
+                .setVibrate(new long[]{0L})
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.mipmap.ic_stat_price_tag)
-                .setVibrate(null)
                 .setSound(null)
                 .setContentTitle(activityName)
                 .setContentText("Reading data...")

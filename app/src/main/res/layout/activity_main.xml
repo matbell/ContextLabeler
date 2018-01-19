@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="matbell.it.contextlabeler.MainActivity"
-    android:background="@color/lightGreen">
+    android:background="@color/white">
 
     <Button
         android:id="@+id/control_button"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:layout_centerInParent="true"
         android:text="@string/button_start"
         android:onClick="onControlClicked"
@@ -27,33 +27,25 @@
         style="@style/SpinKitView.Large.MultiplePulseRing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        app:SpinKit_Color="@color/white"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/control_button"
-        android:layout_margin="30dp"
-        android:padding="5dp"
+        android:layout_centerInParent="true"
+        app:SpinKit_Color="@color/colorPrimaryDark"
+        android:padding="20dp"
         android:visibility="invisible"/>
 
-    <AutoCompleteTextView
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_margin="20dp"
-        android:hint="@string/activity_hint"
-        android:inputType="textPersonName"
+    <ImageView
+        android:id="@+id/current_activity_iv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
-        android:imeOptions="actionDone"
-        android:singleLine="true"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
-    <TextView
-        android:id="@+id/action_text"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activities_recycle_view"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:layout_above="@id/control_button"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@id/control_button"/>
+
 </RelativeLayout>

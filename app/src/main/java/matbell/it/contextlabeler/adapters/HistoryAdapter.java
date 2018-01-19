@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler;
+package matbell.it.contextlabeler.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import matbell.it.contextlabeler.LogManager;
+import matbell.it.contextlabeler.R;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
 

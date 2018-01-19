@@ -85,7 +85,7 @@ public class SetupPermissionsFragment extends Fragment {
         if(require)
             ActivityCompat.requestPermissions(getActivity(), RUNTIME_PERMISSIONS, REQ_CODE);
         else
-            ((SetupActivity)getActivity()).nextPage();
+            ((SetupActivity)getActivity()).nextFragment(1);
     }
 
     @Override

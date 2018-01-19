@@ -1,12 +1,19 @@
 <resources>
 
     <!-- SETUP -->
+    <string name="app_stats_title">APPS USAGE STATISTICS</string>
+    <string name="app_stats_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel efficitur turpis.
+        Praesent vulputate, erat sed facilisis vulputate, diam arcu bibendum mauris, eget porta
+        sapien arcu ac dolor.
+    </string>
     <string name="permission_title">PERMISSIONS</string>
     <string name="permission_description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel efficitur turpis.
         Praesent vulputate, erat sed facilisis vulputate, diam arcu bibendum mauris, eget porta
         sapien arcu ac dolor.
     </string>
+    <string name="next">Next</string>
     <string name="grant_permissions">Grant permissions</string>
     <string name="ignore_battery_opt">Ignore battery optimization</string>
     <string name="open_settings">Open settings</string>

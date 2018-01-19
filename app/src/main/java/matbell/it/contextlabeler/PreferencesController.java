@@ -12,6 +12,7 @@ public class PreferencesController {
     private static final String PREFS = "contextLabeler";
     private static final String PREF_START = "startActivity";
     private static final String PREF_START_ACTIVITY = "activityName";
+    private static final String PREF_ACTIVITY_RESOURCE_ICON = "activityResourceIcon";
     private static final String PREF_ACTIVITIES_HISTORY = "activitiesHistory";
     public static final String PREF_SETUP_COMPLETE = "setupComplete";
 
@@ -34,11 +35,18 @@ public class PreferencesController {
                 PREF_START_ACTIVITY, "");
     }
 
-    static void setNewActivity(Context context, long start, String name){
+    static int getActivityResourceIcon(Context context){
+        return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getInt(
+                PREF_ACTIVITY_RESOURCE_ICON, -1);
+    }
+
+    static void setNewActivity(Context context, long start, String name, int activityResourceIcon){
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putString(
                 PREF_START_ACTIVITY, name).apply();
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putLong(
                 PREF_START, start).apply();
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putInt(
+                PREF_ACTIVITY_RESOURCE_ICON, activityResourceIcon).apply();
     }
 
     static void setActivityHistory(Context context, String activity){

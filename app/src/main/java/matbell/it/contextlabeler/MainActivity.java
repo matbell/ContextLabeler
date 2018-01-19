@@ -1,32 +1,43 @@
 package matbell.it.contextlabeler;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+
+import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 import java.util.Calendar;
+import java.util.List;
 
 import it.matbell.ask.ASK;
+import matbell.it.contextlabeler.adapters.ActivitiesAdapter;
+import matbell.it.contextlabeler.adapters.ActivityElement;
+import matbell.it.contextlabeler.controllers.ActivitiesController;
 import matbell.it.contextlabeler.setup.SetupActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AutoCompleteTextView editText;
-    private TextView actionText;
     private Button button;
     private ProgressBar progressBar;
-    private ArrayAdapter<String> adapter;
     private ASK ask;
+
+    private List<ActivityElement> activities = ActivitiesController.getActivities();
+    private ActivitiesAdapter adapter;
+    private RecyclerView recyclerView;
+    private ImageView currentActivityImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        editText = findViewById(R.id.editText);
-        actionText = findViewById(R.id.action_text);
         button = findViewById(R.id.control_button);
         progressBar = findViewById(R.id.spin_kit);
+        currentActivityImageView = findViewById(R.id.current_activity_iv);
+
+        // set up the RecyclerView
+        recyclerView = findViewById(R.id.activities_recycle_view);
+        int numberOfColumns = 4;
+        adapter = new ActivitiesAdapter(this, activities);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -62,11 +79,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 startReadingUI();
             }
-
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,
-                    PreferencesController.getActivitiesHistory(this));
-            editText.setAdapter(adapter);
-            editText.setThreshold(1);
         }
     }
 
@@ -90,6 +102,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean checkWifiAndBluetooth(){
+        WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        return wifi != null && wifi.isWifiEnabled() && mBluetoothAdapter != null &&
+                mBluetoothAdapter.isEnabled();
+    }
+
+    private void showWifiAndBtDialog(){
+
+        new FancyGifDialog.Builder(this)
+                .setTitle("Wi-Fi or Bluetooth disabled?")
+                .setMessage("Please, enable both Wi-Fi and Bluetooth to start a new reading.")
+                .setPositiveBtnBackground("#966E5C")
+                .setPositiveBtnText("Ok")
+                .setNegativeBtnText("Cancel")
+                .setGifResource(R.drawable.no_wifi)
+                .isCancellable(true)
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {}
+                })
+                .build();
+    }
+
     private boolean isSetupComplete(){
 
         boolean check = false;
@@ -104,23 +141,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void onControlClicked(View view){
 
-        if(!PreferencesController.readingIsActive(this) && editText.getText() != null &&
-                editText.getText().toString().length() > 0){
+        if(!PreferencesController.readingIsActive(this)){
 
-            String activity = editText.getText().toString();
+            if(adapter.getSelectedElement() == null){
+                showMissingSelectedActivityDialog();
 
-            PreferencesController.setNewActivity(this,
-                    Calendar.getInstance().getTime().getTime(), activity);
-            NotificationController.showNotification(this, activity);
+            }else {
 
-            PreferencesController.setActivityHistory(this, activity);
-            adapter.add(activity);
+                if (checkWifiAndBluetooth()) {
 
-            startReadingUI();
+                    String activity = adapter.getSelectedElement().activityLabel;
+                    int imageResource = adapter.getSelectedElement().activityIconRes;
 
-            ask.start();
+                    PreferencesController.setNewActivity(this,
+                        Calendar.getInstance().getTime().getTime(), activity, imageResource);
 
-        }else if(PreferencesController.readingIsActive(this)){
+                    NotificationController.showNotification(this, activity);
+
+                    startReadingUI();
+
+                    ask.start();
+
+                } else
+                    showWifiAndBtDialog();
+            }
+
+        }else{
 
             LogManager.storeNewActivity(this,
                     PreferencesController.getActivityName(this),
@@ -137,22 +183,42 @@ public class MainActivity extends AppCompatActivity {
 
     private void startReadingUI(){
 
-        String action = getResources().getText(R.string.action_text).toString()
-                .concat(" ")
-                .concat(PreferencesController.getActivityName(this));
+        NotificationController.showNotification(this,
+                PreferencesController.getActivityName(this));
 
-        actionText.setText(action);
+        recyclerView.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        editText.getText().clear();
-        editText.setVisibility(View.INVISIBLE);
+
+        if(PreferencesController.getActivityResourceIcon(this) != -1){
+            currentActivityImageView.setImageResource(PreferencesController.getActivityResourceIcon(
+                    this));
+            currentActivityImageView.setVisibility(View.VISIBLE);
+        }
+
         button.setText(getResources().getText(R.string.button_stop));
     }
 
     private void stopReadingUI(){
 
-        actionText.setText("");
-        editText.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
+        currentActivityImageView.setVisibility(View.INVISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
         button.setText(getResources().getText(R.string.button_start));
+    }
+
+    private void showMissingSelectedActivityDialog(){
+        new FancyGifDialog.Builder(this)
+                .setTitle("What are you doing now?")
+                .setMessage("Please, select your current activity to start a new reading.")
+                .setPositiveBtnBackground("#75ceab")
+                .setPositiveBtnText("Ok")
+                .setNegativeBtnText("Cancel")
+                .setGifResource(R.drawable.pandas)
+                .isCancellable(true)
+                .OnNegativeClicked(new FancyGifDialogListener() {
+                    @Override
+                    public void OnClick() {}
+                })
+                .build();
     }
 }

@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light">
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/battery" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_stats" />
 
     <TextView
         android:id="@+id/title"
@@ -19,27 +19,28 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/img"
         android:layout_margin="10dp"
-        android:text="@string/permission_title"
+        android:text="@string/app_stats_title"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="@string/permission_description"
+        android:text="@string/app_stats_description"
         android:layout_below="@id/title"
         android:textAlignment="center"/>
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+    <com.dd.morphingbutton.MorphingButton
+        android:id="@+id/grant_permission_button"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/desc"
-        android:layout_marginTop="20dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:text="@string/grant_permissions"
+        android:textColor="@color/light"
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>

@@ -25,6 +25,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import matbell.it.contextlabeler.adapters.HistoryAdapter;
+import matbell.it.contextlabeler.adapters.HistoryElement;
+
 public class HistoryActivity extends AppCompatActivity {
 
     private HistoryAdapter historyAdapter;
