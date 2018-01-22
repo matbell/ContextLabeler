@@ -38,8 +38,8 @@ public class SetupActivity extends AppCompatActivity {
 
         fragments[0] = new SetupPermissionsFragment();
         fragments[1] = new SetupPowerFragment();
-        fragments[2] = new SetupAutoStartFragment();
-        fragments[3] = new SetupAppStatisticsFragment();
+        fragments[2] = new SetupAppStatisticsFragment();
+        fragments[3] = new SetupAutoStartFragment();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = findViewById(R.id.pager);
@@ -155,11 +155,7 @@ public class SetupActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
-                            if(!AutoStartController.requestIsNeeded())
-                                nextFragment(2);
-                            else
-                                nextFragment(1);
+                            nextFragment(1);
 
                         }
                     }, fragment.getAnimationDuration() * 2);

@@ -17,7 +17,7 @@ import matbell.it.contextlabeler.adapters.HistoryElement;
 public class LogManager {
 
     static final String BASE_DIR = "ContextLabeler";
-    static final String FILE_NAME = "activities.log";
+    static final String FILE_NAME = "activities.csv";
     public static final String LOG_SEP = "\t";
 
     static void storeNewActivity(final Context context, final String activityName,

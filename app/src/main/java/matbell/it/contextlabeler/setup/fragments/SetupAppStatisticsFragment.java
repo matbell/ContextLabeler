@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.dd.morphingbutton.MorphingButton;
 
 import matbell.it.contextlabeler.R;
+import matbell.it.contextlabeler.setup.AutoStartController;
 import matbell.it.contextlabeler.setup.SetupActivity;
 import matbell.it.contextlabeler.setup.Utils;
 
@@ -23,7 +24,7 @@ public class SetupAppStatisticsFragment extends Fragment {
 
     private MorphingButton grantButton;
     public static final int BUTTON_ANIM_DURATION = 500;
-    private boolean finish = false;
+    private boolean nextOrFinish = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,20 +39,29 @@ public class SetupAppStatisticsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!finish) {
+                if (!nextOrFinish) {
 
                     openSettingsActivity();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+
+                            int labelId = (!AutoStartController.requestIsNeeded()) ? R.string.finish
+                                    : R.string.next;
+
                             Utils.enableGreen(getActivity(), grantButton, getContext().getResources()
-                                    .getString(R.string.finish));
-                            finish = true;
+                                    .getString(labelId));
+
+                            nextOrFinish = true;
+
                         }
                     }, BUTTON_ANIM_DURATION);
 
                 }else{
-                    ((SetupActivity)getActivity()).onSetupComplete();
+                    if(!AutoStartController.requestIsNeeded())
+                        ((SetupActivity)getActivity()).onSetupComplete();
+                    else
+                        ((SetupActivity)getActivity()).nextFragment(1);
                 }
             }
         });
@@ -60,10 +70,9 @@ public class SetupAppStatisticsFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        if (getUserVisibleHint()) {
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
             Utils.morphToSquare(getActivity(), grantButton, BUTTON_ANIM_DURATION,
                     getContext().getResources().getString(R.string.grant_permissions));
         }

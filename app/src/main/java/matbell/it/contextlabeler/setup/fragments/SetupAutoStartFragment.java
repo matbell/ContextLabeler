@@ -1,6 +1,8 @@
 package matbell.it.contextlabeler.setup.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +21,9 @@ import matbell.it.contextlabeler.setup.Utils;
 
 public class SetupAutoStartFragment extends Fragment {
 
-    private MorphingButton grantButton, finishButton;
+    private MorphingButton grantButton;
     private static final int BUTTON_ANIM_DURATION = 500;
+    private boolean finish = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,22 +32,28 @@ public class SetupAutoStartFragment extends Fragment {
                 R.layout.setup_autostart, container, false);
 
         grantButton = rootView.findViewById(R.id.grant_permission_button);
-        finishButton = rootView.findViewById(R.id.finish_button);
 
         grantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finishButton.setEnabled(true);
-                AutoStartController.requestAutostart(getContext());
-                Utils.enableGreen(getActivity(), finishButton, getContext().getResources()
-                        .getString(R.string.finish));
-            }
-        });
 
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((SetupActivity)getActivity()).onSetupComplete();
+                if (!finish) {
+                    AutoStartController.requestAutostart(getContext());
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            Utils.enableGreen(getActivity(), grantButton, getContext().getResources()
+                                    .getString(R.string.finish));
+
+                            finish = true;
+
+                        }
+                    }, BUTTON_ANIM_DURATION);
+                }else{
+                        ((SetupActivity)getActivity()).onSetupComplete();
+                }
             }
         });
 
@@ -55,13 +64,8 @@ public class SetupAutoStartFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            Utils.morphToSquareSide(getActivity(), grantButton, BUTTON_ANIM_DURATION,
-                    getContext().getResources().getString(R.string.open_settings));
-
-            Utils.morphToGreenSquareSide(getActivity(), finishButton, BUTTON_ANIM_DURATION,
-                    getContext().getResources().getString(R.string.finish));
-
-            finishButton.setEnabled(false);
+            Utils.morphToSquare(getActivity(), grantButton, BUTTON_ANIM_DURATION,
+                    getContext().getResources().getString(R.string.grant_permissions));
         }
     }
 }

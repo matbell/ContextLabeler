@@ -27,6 +27,7 @@
     <string name="history">History</string>
     <string name="ask_conf">
         {
+            "logPath" : "ContextLabeler",
             "probes" : [
                 {
                     "name" : "WeatherProbe",
