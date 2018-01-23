@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.setup.fragments;
+package it.cnr.iit.contextlabeler.setup.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 
 import com.dd.morphingbutton.MorphingButton;
 
-import matbell.it.contextlabeler.R;
-import matbell.it.contextlabeler.setup.SetupActivity;
-import matbell.it.contextlabeler.setup.Utils;
+import it.cnr.iit.contextlabeler.setup.Utils;
+import it.cnr.iit.contextlabeler.R;
+import it.cnr.iit.contextlabeler.setup.SetupActivity;
 
 /**
  * Created by mattia on 14/12/2017.

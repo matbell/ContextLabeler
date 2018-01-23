@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.adapters;
+package it.cnr.iit.contextlabeler.adapters;
 
 import android.support.annotation.NonNull;
 

@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.setup;
+package it.cnr.iit.contextlabeler.setup;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

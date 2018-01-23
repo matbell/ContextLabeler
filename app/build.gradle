@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "matbell.it.contextlabeler"
+        applicationId "it.cnr.iit.contextlabeler"
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 1

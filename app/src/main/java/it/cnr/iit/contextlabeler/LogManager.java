@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler;
+package it.cnr.iit.contextlabeler;
 
 import android.content.Context;
 
@@ -12,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
-import matbell.it.contextlabeler.adapters.HistoryElement;
+import it.cnr.iit.contextlabeler.adapters.HistoryElement;
 
 public class LogManager {
 

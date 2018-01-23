@@ -1,11 +1,12 @@
-package matbell.it.contextlabeler.controllers;
+package it.cnr.iit.contextlabeler.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import matbell.it.contextlabeler.R;
-import matbell.it.contextlabeler.adapters.ActivityElement;
+import it.cnr.iit.contextlabeler.adapters.ActivityElement;
+
+import it.cnr.iit.contextlabeler.R;
 
 /**
  * Created by mattia on 18/01/18.

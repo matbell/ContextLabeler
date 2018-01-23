@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler;
+package it.cnr.iit.contextlabeler;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -25,8 +25,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import matbell.it.contextlabeler.adapters.HistoryAdapter;
-import matbell.it.contextlabeler.adapters.HistoryElement;
+import it.cnr.iit.contextlabeler.adapters.HistoryElement;
+import it.cnr.iit.contextlabeler.adapters.HistoryAdapter;
 
 public class HistoryActivity extends AppCompatActivity {
 

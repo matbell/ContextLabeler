@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler;
+package it.cnr.iit.contextlabeler;
 
 import android.app.Notification;
 import android.app.NotificationManager;

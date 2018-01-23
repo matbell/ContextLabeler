@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="matbell.it.contextlabeler">
+    package="it.cnr.iit.contextlabeler">
 
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         tools:replace="android:icon,android:theme"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name="it.cnr.iit.contextlabeler.MainActivity"
             android:label="Current activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,10 +51,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".setup.SetupActivity"
+        <activity android:name="it.cnr.iit.contextlabeler.setup.SetupActivity"
             android:theme="@style/AppTheme.NoTitleBar"/>
 
-        <activity android:name=".HistoryActivity"
+        <activity android:name="it.cnr.iit.contextlabeler.HistoryActivity"
             android:label="@string/history"/>
 
         <!-- ACTIVITY RECOGNITION -->

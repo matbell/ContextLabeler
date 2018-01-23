@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.adapters;
+package it.cnr.iit.contextlabeler.adapters;
 
 import android.support.annotation.NonNull;
 
@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import matbell.it.contextlabeler.LogManager;
+import it.cnr.iit.contextlabeler.LogManager;
 
 public class HistoryElement implements Comparable<HistoryElement>{
 

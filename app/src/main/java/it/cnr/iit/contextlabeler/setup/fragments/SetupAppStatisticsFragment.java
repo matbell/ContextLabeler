@@ -1,8 +1,9 @@
-package matbell.it.contextlabeler.setup.fragments;
+package it.cnr.iit.contextlabeler.setup.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,26 +11,26 @@ import android.view.ViewGroup;
 
 import com.dd.morphingbutton.MorphingButton;
 
-import matbell.it.contextlabeler.R;
-import matbell.it.contextlabeler.setup.AutoStartController;
-import matbell.it.contextlabeler.setup.SetupActivity;
-import matbell.it.contextlabeler.setup.Utils;
+import it.cnr.iit.contextlabeler.setup.AutoStartController;
+import it.cnr.iit.contextlabeler.setup.Utils;
+import it.cnr.iit.contextlabeler.R;
+import it.cnr.iit.contextlabeler.setup.SetupActivity;
 
 /**
- * Created by mattia on 15/12/17.
+ * Created by mattia on 18/01/18.
  */
-
-public class SetupAutoStartFragment extends Fragment {
+public class SetupAppStatisticsFragment extends Fragment {
 
     private MorphingButton grantButton;
-    private static final int BUTTON_ANIM_DURATION = 500;
-    private boolean finish = false;
+    public static final int BUTTON_ANIM_DURATION = 500;
+    private boolean nextOrFinish = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.setup_autostart, container, false);
+                R.layout.setup_appstats_fragment, container, false);
 
         grantButton = rootView.findViewById(R.id.grant_permission_button);
 
@@ -37,22 +38,29 @@ public class SetupAutoStartFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!finish) {
-                    AutoStartController.requestAutostart(getContext());
+                if (!nextOrFinish) {
 
+                    openSettingsActivity();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
 
-                            Utils.enableGreen(getActivity(), grantButton, getContext().getResources()
-                                    .getString(R.string.finish));
+                            int labelId = (!AutoStartController.requestIsNeeded()) ? R.string.finish
+                                    : R.string.next;
 
-                            finish = true;
+                            Utils.enableGreen(getActivity(), grantButton, getContext().getResources()
+                                    .getString(labelId));
+
+                            nextOrFinish = true;
 
                         }
                     }, BUTTON_ANIM_DURATION);
+
                 }else{
+                    if(!AutoStartController.requestIsNeeded())
                         ((SetupActivity)getActivity()).onSetupComplete();
+                    else
+                        ((SetupActivity)getActivity()).nextFragment(1);
                 }
             }
         });
@@ -68,4 +76,15 @@ public class SetupAutoStartFragment extends Fragment {
                     getContext().getResources().getString(R.string.grant_permissions));
         }
     }
+
+    public MorphingButton getGrantButton(){
+        return this.grantButton;
+    }
+
+    private void openSettingsActivity(){
+
+        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        startActivity(intent);
+    }
+
 }

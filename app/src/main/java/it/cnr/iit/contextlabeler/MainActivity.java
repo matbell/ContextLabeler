@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler;
+package it.cnr.iit.contextlabeler;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
@@ -23,10 +23,10 @@ import java.util.Calendar;
 import java.util.List;
 
 import it.matbell.ask.ASK;
-import matbell.it.contextlabeler.adapters.ActivitiesAdapter;
-import matbell.it.contextlabeler.adapters.ActivityElement;
-import matbell.it.contextlabeler.controllers.ActivitiesController;
-import matbell.it.contextlabeler.setup.SetupActivity;
+import it.cnr.iit.contextlabeler.adapters.ActivitiesAdapter;
+import it.cnr.iit.contextlabeler.adapters.ActivityElement;
+import it.cnr.iit.contextlabeler.controllers.ActivitiesController;
+import it.cnr.iit.contextlabeler.setup.SetupActivity;
 
 public class MainActivity extends AppCompatActivity {
 

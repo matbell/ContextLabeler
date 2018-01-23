@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.setup;
+package it.cnr.iit.contextlabeler.setup;
 
 import android.content.ComponentName;
 import android.content.Context;

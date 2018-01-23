@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.setup;
+package it.cnr.iit.contextlabeler.setup;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,13 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.dd.morphingbutton.MorphingButton;
 
-import matbell.it.contextlabeler.MainActivity;
-import matbell.it.contextlabeler.PreferencesController;
-import matbell.it.contextlabeler.R;
-import matbell.it.contextlabeler.setup.fragments.SetupAppStatisticsFragment;
-import matbell.it.contextlabeler.setup.fragments.SetupAutoStartFragment;
-import matbell.it.contextlabeler.setup.fragments.SetupPermissionsFragment;
-import matbell.it.contextlabeler.setup.fragments.SetupPowerFragment;
+import it.cnr.iit.contextlabeler.MainActivity;
+import it.cnr.iit.contextlabeler.PreferencesController;
+import it.cnr.iit.contextlabeler.R;
+import it.cnr.iit.contextlabeler.setup.fragments.SetupAppStatisticsFragment;
+import it.cnr.iit.contextlabeler.setup.fragments.SetupAutoStartFragment;
+import it.cnr.iit.contextlabeler.setup.fragments.SetupPermissionsFragment;
+import it.cnr.iit.contextlabeler.setup.fragments.SetupPowerFragment;
 
 public class SetupActivity extends AppCompatActivity {
 

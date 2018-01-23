@@ -1,4 +1,4 @@
-package matbell.it.contextlabeler.adapters;
+package it.cnr.iit.contextlabeler.adapters;
 
 import android.content.Context;
 import android.graphics.ColorMatrix;
@@ -9,14 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import matbell.it.contextlabeler.R;
+import it.cnr.iit.contextlabeler.R;
 
 public class ActivitiesAdapter extends RecyclerView.Adapter<ActivitiesAdapter.MyViewHolder> {
 

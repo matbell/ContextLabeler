@@ -1,10 +1,10 @@
-package matbell.it.contextlabeler.setup;
+package it.cnr.iit.contextlabeler.setup;
 
 import android.content.Context;
 
 import com.dd.morphingbutton.MorphingButton;
 
-import matbell.it.contextlabeler.R;
+import it.cnr.iit.contextlabeler.R;
 
 /**
  * Created by mattia on 15/12/17.
