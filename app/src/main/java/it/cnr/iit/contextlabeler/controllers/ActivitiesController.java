@@ -8,10 +8,6 @@ import it.cnr.iit.contextlabeler.adapters.ActivityElement;
 
 import it.cnr.iit.contextlabeler.R;
 
-/**
- * Created by mattia on 18/01/18.
- */
-
 public class ActivitiesController {
 
     public static List<ActivityElement> getActivities(){

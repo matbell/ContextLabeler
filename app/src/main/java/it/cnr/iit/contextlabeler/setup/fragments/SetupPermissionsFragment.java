@@ -17,10 +17,6 @@ import it.cnr.iit.contextlabeler.setup.Utils;
 import it.cnr.iit.contextlabeler.R;
 import it.cnr.iit.contextlabeler.setup.SetupActivity;
 
-/**
- * Created by mattia on 14/12/2017.
- */
-
 public class SetupPermissionsFragment extends Fragment {
 
     private MorphingButton grantButton;

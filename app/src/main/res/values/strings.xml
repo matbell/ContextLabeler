@@ -30,6 +30,10 @@
             "logPath" : "ContextLabeler",
             "probes" : [
                 {
+                    "name": "MultimediaProbe",
+                    "logFile": "multimedia.csv"
+                },
+                {
                     "name" : "WeatherProbe",
                     "interval" : 3600,
                     "unit" : 2,
