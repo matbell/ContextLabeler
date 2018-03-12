@@ -30,6 +30,11 @@
             "logPath" : "ContextLabeler",
             "probes" : [
                 {
+                    "name" : "HardwareInfoProbe",
+                    "interval" : 3600,
+                    "logFile": "hardware_info.csv"
+                },
+                {
                     "name": "MultimediaProbe",
                     "logFile": "multimedia.csv"
                 },
@@ -100,22 +105,22 @@
                 },
                 {
                     "name" : "InstalledAppsProbe",
-                    "interval" : 60,
+                    "interval" : 3600,
                     "logFile" : "installed_apps.csv"
                 },
                 {
                     "name" : "LocationProbe",
-                    "interval" : 180,
+                    "interval" : 300,
                     "logFile" : "location.csv"
                 },
                 {
                     "name" : "RunningApplicationsProbe",
-                    "interval" : 180,
+                    "interval" : 300,
                     "logFile" : "running_apps.csv"
                 },
                 {
                     "name" : "AppsUsageProbe",
-                    "interval" : 180,
+                    "interval" : 3600,
                     "logFile" : "apps_usage.csv"
                 },
                 {
